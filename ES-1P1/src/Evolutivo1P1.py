@@ -5,6 +5,7 @@ Created on 05/05/2015
 '''
 import random
 import sys
+from decimal import *
 
 class Evolutivo1P1(object):
 
@@ -12,47 +13,53 @@ class Evolutivo1P1(object):
     Constructor
     '''
     def __init__(self):
-        self.sigma = 0.1
+        self.sigma = 0.2
         self.exitos = 0
         self.C = 0.817
         self.numVar = 2
         self.mejorSolucion = []
-        self.MAX_ITER = 10000
+        self.MAX_ITER = 20000
         if len(sys.argv) > 1:
             argumento = sys.argv[1]
             self.numVar = int(argumento)
 
 
     def RUN(self):
-        print("------------------------------------------")
-        print("ALGORITMO EVOLUTIVO 1 + 1")
-        print("------------------------------------------")
+        print("*****************************")
+        print("* ALGORITMO EVOLUTIVO 1 + 1 *")
+        print("*****************************")
         print '|NUMERO DE VARIABLES(d):',self.numVar,'| SIGMA:',self.sigma,'| MAX_ITER:',self.MAX_ITER,'|'
         print ""
-        print "Generando X(0) ... "
+        print "Generando Primer individuo ... "
         padre = self.generaSecAleatoria(-5,5)
-        print "Xo =",padre
+        print "Individuo 0 =",padre
         hijo = []
         #----------------------------------------------------
-        print "Ejecutando generaciones..."
+        print "EJECUTANDO GENERACIONES..."
         for generacion in range(self.MAX_ITER):
             aptPadre = self.aptitud(padre)
             hijo = self.mutar(padre)
             aptHijo = self.aptitud(hijo)
+            print '<<G',generacion,'>> ','[PADRE]',aptPadre,padre,' [HIJO]',aptHijo,hijo
             if(aptHijo<aptPadre): # Mejor indivuduo
                 padre = hijo[:] # reemplazo padre por hijo
-                self.mejorSolucion = padre[:] # para mantener 
+                self.mejorSolucion = []
                 self.mejorSolucion.append(generacion)
-                self.exitos +=1
-            if((generacion%(10*self.numVar))==0):
-                print("|||Actualizando sigma|||")
-                self.modificarSigma()    
-            print '<G',generacion,'> ','[P]','<',aptPadre,'> ',padre,' [H]','<',aptHijo,'> ',hijo
+                self.mejorSolucion.append(aptHijo)
+                self.exitos = self.exitos + 1
+                print "========================================="
+                print '== <<G',generacion,'>>     |MUTACION EXITOSA|'
+                print "========================================="
+                print ""
+            if(generacion!=0 and (generacion%(10*self.numVar))==0):
+                print "====|ACTUALIZANDO SIGMA|===="
+                self.modificarSigma()
+            
         print ""
         print "Proceso finalizado."
         print "---------------------------"
-        print "MEJOR SOLUCION ENCONTRADA:"
-        print " >> Individuo: ",padre,"en "
+        print "MEJOR INDIVIDUO ENCONTRADO:"
+        print '>>[GENERACION]',self.mejorSolucion[0] ,' [APTITUD]',self.mejorSolucion[1],'[GENOMA]',padre 
         print "---------------------------"
         
 
@@ -74,8 +81,10 @@ class Evolutivo1P1(object):
     def mutar(self,individuo):
         nuevoIndividuo = []
         secuenciaM = []
-        secuenciaM.append(random.uniform(-1,1))
-        secuenciaM.append(random.uniform(-1,1))
+        #secuenciaM.append(random.uniform(-1,1))
+        #secuenciaM.append(random.uniform(-1,1))
+        for i in range(self.numVar):
+            secuenciaM.append(random.normalvariate(0,1))
         unGen = 0
         for gen in individuo:
             genMut = gen + (self.sigma * secuenciaM[unGen])
@@ -85,10 +94,14 @@ class Evolutivo1P1(object):
     
     def modificarSigma(self):
         ps = self.exitos / (10*self.numVar)
-        if(ps > (1/5)):
+        if(ps > 0.2):
             self.sigma = self.sigma / self.C
-        elif(ps<(1/5)):
+            print "[ps > 0.2]Sigma actualizada: ", self.sigma
+        elif(ps<0.2):
             self.sigma = self.sigma * self.C
+            print "[ps < 0.2]Sigma actualizada: ", self.sigma
+        elif(ps==0.2):
+            print "[ps = 0.2]Sigma se mantiene: ", self.sigma
         self.exitos = 0    
             
 
