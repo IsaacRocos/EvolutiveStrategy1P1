@@ -23,8 +23,6 @@ class Evolutivo1P1(object):
             argumento = sys.argv[1]
             self.numVar = int(argumento)
 
-    def setNVar(self,nv):
-        self.numVar = nv
 
     def RUN(self):
         print("*****************************")
