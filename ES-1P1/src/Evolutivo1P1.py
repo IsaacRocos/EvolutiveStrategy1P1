@@ -19,10 +19,11 @@ class Evolutivo1P1(object):
         self.numVar = 2
         self.mejorSolucion = []
         self.MAX_ITER = 20000
+        self.interInf = -5
+        self.interSup = 5
         if len(sys.argv) > 1:
             argumento = sys.argv[1]
             self.numVar = int(argumento)
-
 
     def RUN(self):
         print("*****************************")
@@ -30,8 +31,8 @@ class Evolutivo1P1(object):
         print("*****************************")
         print '|NUMERO DE VARIABLES(d):',self.numVar,'| SIGMA:',self.sigma,'| MAX_ITER:',self.MAX_ITER,'|'
         print ""
-        print "Generando Primer individuo ... "
-        padre = self.generaSecAleatoria(-5,5)
+        print 'Generando Primer individuo en intervalo [',self.interInf,',',self.interSup,']'
+        padre = self.generaSecAleatoria(self.interInf,self.interSup)
         print "Individuo 0 =",padre
         hijo = []
         #----------------------------------------------------
@@ -69,8 +70,9 @@ class Evolutivo1P1(object):
             solucionInic.append(random.uniform(li,ls))
         return solucionInic
     
+    
+    #Para probar algoritmo con primer funcion. 
     def aptitud(self,individuo):
-        # Obtener valor de la derivada de la funcion, si el valor resultante es menor que self.Epsilon, la solucion es valida
         fxsum = 0
         for gen in individuo:
             sxi = ((gen)**4) - (16*(gen)**2) + (5*(gen))
@@ -105,5 +107,5 @@ class Evolutivo1P1(object):
         self.exitos = 0    
             
 
-chispaVida = Evolutivo1P1()
-chispaVida.RUN()
+#chispaVida = Evolutivo1P1()
+#chispaVida.RUN()
