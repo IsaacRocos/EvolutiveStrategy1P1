@@ -21,12 +21,16 @@ class DeJong(Evolutivo1P1):
         self.MAX_ITER = 10000
         self.interInf = -65.536
         self.interSup = 65.536
-        
+        a1 = [-32,-16,0,16,32]
+        a2 = [-32]*5 + [-16]*5 + [0]*5 + [16]*5 + [32]*5
+        self.a = []
+        self.a.append(a1)
+        self.a.append(a2)
     #@Override
     def aptitud(self,individuo):
         fxsum = 0
-        for i in range(25):
-            sxi = 
+        for i in range(24):
+            sxi =  1 / ( (i+i) + (individuo[0] - self.a[0][i])**6 + (individuo[1] - self.a[1][i])**6)
             fxsum = fxsum+sxi
         fx = 1 / ( 0.002 + fxsum )
         return fx
