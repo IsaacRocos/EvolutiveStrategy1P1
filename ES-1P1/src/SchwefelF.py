@@ -15,7 +15,7 @@ class Schwefel(Evolutivo1P1):
         self.sigma = 0.2
         self.exitos = 0
         self.CExplotar = 0.817
-        self.CExplorar = 1.0001
+        self.CExplorar = 1.0011
         self.numVar = 4
         self.mejorSolucion = []
         self.MAX_ITER = 10000

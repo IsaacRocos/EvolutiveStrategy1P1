@@ -42,19 +42,21 @@ class Evolutivo1P1(object):
             aptPadre = self.aptitud(padre)
             hijo = self.mutar(padre)
             aptHijo = self.aptitud(hijo)
-            print '<<G',generacion,'>> ','[PADRE]',aptPadre,padre,' [HIJO]',aptHijo,hijo
+            
+            #print '<<G',generacion,'>> ','[PADRE]',aptPadre,padre,' [HIJO]',aptHijo,hijo
+            
             if(aptHijo<aptPadre): # Mejor indivuduo
                 padre = hijo[:] # reemplazo padre por hijo
                 self.mejorSolucion = []
                 self.mejorSolucion.append(generacion)
                 self.mejorSolucion.append(aptHijo)
                 self.exitos = self.exitos + 1
-                
+                '''
                 print "========================================="
                 print '== <<G',generacion,'>>     |MUTACION EXITOSA|'
                 print "========================================="
                 print ""
-                
+                '''
             if(generacion!=0 and (generacion%(10*self.numVar))==0):
                 #print "====|ACTUALIZANDO SIGMA|===="
                 self.modificarSigma()
