@@ -19,7 +19,7 @@ class Evolutivo1P1(object):
         self.CExplorar = 1.01
         self.numVar = 2
         self.mejorSolucion = []
-        self.MAX_ITER = 20000
+        self.MAX_ITER = 10000
         self.interInf = -5
         self.interSup = 5
         if len(sys.argv) > 1:
@@ -27,9 +27,9 @@ class Evolutivo1P1(object):
             self.numVar = int(argumento)
 
     def RUN(self):
-        print("*****************************")
-        print("* ALGORITMO EVOLUTIVO 1 + 1 *")
-        print("*****************************")
+        #print("*****************************")
+        #print("* ALGORITMO EVOLUTIVO 1 + 1 *")
+        #print("*****************************")
         print '|NUMERO DE VARIABLES(d):',self.numVar,'| SIGMA:',self.sigma,'| MAX_ITER:',self.MAX_ITER,'|'
         print ""
         print 'Generando Primer individuo en intervalo [',self.interInf,',',self.interSup,']'
@@ -42,28 +42,28 @@ class Evolutivo1P1(object):
             aptPadre = self.aptitud(padre)
             hijo = self.mutar(padre)
             aptHijo = self.aptitud(hijo)
-            #print '<<G',generacion,'>> ','[PADRE]',aptPadre,padre,' [HIJO]',aptHijo,hijo
+            print '<<G',generacion,'>> ','[PADRE]',aptPadre,padre,' [HIJO]',aptHijo,hijo
             if(aptHijo<aptPadre): # Mejor indivuduo
                 padre = hijo[:] # reemplazo padre por hijo
                 self.mejorSolucion = []
                 self.mejorSolucion.append(generacion)
                 self.mejorSolucion.append(aptHijo)
                 self.exitos = self.exitos + 1
-                '''
+                
                 print "========================================="
                 print '== <<G',generacion,'>>     |MUTACION EXITOSA|'
                 print "========================================="
                 print ""
-                '''
+                
             if(generacion!=0 and (generacion%(10*self.numVar))==0):
                 #print "====|ACTUALIZANDO SIGMA|===="
                 self.modificarSigma()
             
         print ""
-        print "Proceso finalizado."
+        print "PROCESO FINALIZADO"
         print "---------------------------"
         print "MEJOR INDIVIDUO ENCONTRADO:"
-        print '>>[GENERACION]',self.mejorSolucion[0] ,' [APTITUD]',self.mejorSolucion[1],'[GENOMA]',padre 
+        print '>>[GENERACION]',self.mejorSolucion[0] ,' [APTITUD]',self.mejorSolucion[1],'[GENOTIPO]',padre 
         print "---------------------------"
         
 
