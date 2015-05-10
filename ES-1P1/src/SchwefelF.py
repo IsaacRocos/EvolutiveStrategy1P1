@@ -9,9 +9,7 @@ from Evolutivo1P1 import Evolutivo1P1
 class Schwefel(Evolutivo1P1):
 
     def __init__(self):
-        print '***********************************'
-        print "|EJECUTANDO (5) SchafferFunctionN4|"
-        print '***********************************'
+        
         self.sigma = 0.2
         self.exitos = 0
         self.CExplotar = 0.817
@@ -31,6 +29,15 @@ class Schwefel(Evolutivo1P1):
             fxsum = fxsum+sxi
         fx = 418.9829*self.numVar - fxsum 
         return fx
+    
+    def info(self,iter):
+        if(iter ==0):
+            print '***********************************'
+            print "|EJECUTANDO (5) SchafferFunctionN4|"
+            print '***********************************'
+        else:
+            print '========== Ejecucion',iter+1,'=========='
 
-funSchwefel = Schwefel()
-funSchwefel.RUN() 
+    
+#funSchwefel = Schwefel()
+#funSchwefel.RUN() 

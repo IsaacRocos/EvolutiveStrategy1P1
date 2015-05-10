@@ -12,9 +12,7 @@ class Shubert(Evolutivo1P1):
     '''
 
     def __init__(self):
-        print '***********************************'
-        print "|EJECUTANDO (7) ShubertFunction|"
-        print '***********************************'
+        
         self.sigma = 0.2
         self.exitos = 0
         self.CExplotar = 0.817
@@ -39,6 +37,15 @@ class Shubert(Evolutivo1P1):
             
         fx = fx1sum * fx2sum
         return fx
+    
+    def info(self,iter):
+        if(iter ==0):
+            print '***********************************'
+            print "|EJECUTANDO (7) ShubertFunction|"
+            print '***********************************'
+        else:
+            print '========== Ejecucion',iter+1,'=========='
 
-funShubert = Shubert()
-funShubert.RUN() 
+        
+#funShubert = Shubert()
+#funShubert.RUN() 

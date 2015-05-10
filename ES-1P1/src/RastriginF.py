@@ -12,9 +12,6 @@ class Rastrigin(Evolutivo1P1):
     '''
 
     def __init__(self):
-        print '**********************************'
-        print "|EJECUTANDO (2) RastriginFunction|"
-        print '**********************************'
         self.sigma = 0.2
         self.exitos = 0
         self.CExplotar = 0.817
@@ -35,5 +32,14 @@ class Rastrigin(Evolutivo1P1):
         fx = 10*self.numVar + fxsum
         return fx
 
-prueba = Rastrigin()
-prueba.RUN()
+    def info(self,iter):
+        if(iter==0):
+            print '**********************************'
+            print "|EJECUTANDO (2) RastriginFunction|"
+            print '**********************************'
+        else:
+            print '========== Ejecucion',iter+1,'=========='
+
+        
+#prueba = Rastrigin()
+#prueba.RUN()

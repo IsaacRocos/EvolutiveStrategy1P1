@@ -30,14 +30,15 @@ class Evolutivo1P1(object):
         #print("*****************************")
         #print("* ALGORITMO EVOLUTIVO 1 + 1 *")
         #print("*****************************")
-        print '|NUMERO DE VARIABLES(d):',self.numVar,'| SIGMA:',self.sigma,'| MAX_ITER:',self.MAX_ITER,'|'
+        self.__init__()
+        #print '|NUMERO DE VARIABLES(d):',self.numVar,'| SIGMA:',self.sigma,'| MAX_ITER:',self.MAX_ITER,'|'
         print ""
-        print 'Generando Primer individuo en intervalo [',self.interInf,',',self.interSup,']'
+        print 'Primer individuo con intervalo: [',self.interInf,',',self.interSup,']'
         padre = self.generaSecAleatoria(self.interInf,self.interSup)
         print "Individuo 0 =",padre
         hijo = []
         #----------------------------------------------------
-        print "EJECUTANDO GENERACIONES..."
+        #print "EJECUTANDO GENERACIONES..."
         for generacion in range(self.MAX_ITER):
             aptPadre = self.aptitud(padre)
             hijo = self.mutar(padre)
@@ -45,7 +46,7 @@ class Evolutivo1P1(object):
             
             #print '<<G',generacion,'>> ','[PADRE]',aptPadre,padre,' [HIJO]',aptHijo,hijo
             
-            if(aptHijo<aptPadre): # Mejor indivuduo
+            if(aptHijo<=aptPadre): # Mejor indivuduo
                 padre = hijo[:] # reemplazo padre por hijo
                 self.mejorSolucion = []
                 self.mejorSolucion.append(generacion)
@@ -53,7 +54,7 @@ class Evolutivo1P1(object):
                 self.exitos = self.exitos + 1
                 '''
                 print "========================================="
-                print '== <<G',generacion,'>>     |MUTACION EXITOSA|'
+                print '== <<G',generacion,'>> |MUTACION EXITOSA|'
                 print "========================================="
                 print ""
                 '''
@@ -61,12 +62,13 @@ class Evolutivo1P1(object):
                 #print "====|ACTUALIZANDO SIGMA|===="
                 self.modificarSigma()
             
-        print ""
-        print "PROCESO FINALIZADO"
-        print "---------------------------"
-        print "MEJOR INDIVIDUO ENCONTRADO:"
+        #print ""
+        #print "PROCESO FINALIZADO"
+        print ">>>>>>>>>>>>>>>>>>>>>>>>>>>"
+        print "MEJOR INDIVIDUO ENCONTRADO"
+        print ">>>>>>>>>>>>>>>>>>>>>>>>>>>"
         print '>>[GENERACION]',self.mejorSolucion[0] ,' [APTITUD]',self.mejorSolucion[1],'[GENOTIPO]',padre 
-        print "---------------------------"
+        print ""
         
 
     def generaSecAleatoria(self,li,ls):
@@ -90,17 +92,24 @@ class Evolutivo1P1(object):
         secuenciaM = []
         #secuenciaM.append(random.uniform(-1,1))
         #secuenciaM.append(random.uniform(-1,1))
-        for i in range(self.numVar):
-            secuenciaM.append(random.normalvariate(0,1))
+        #for i in range(self.numVar):
+        valAleat = random.normalvariate(0,1)#dist normal - media cero y desviacion estandar 1
+        '''
+        if(valAleat>1.0):
+            valAleat = 1.0
+        elif(valAleat<-1.0):
+            valAleat = -1.0
+        '''
+            #secuenciaM.append(valAleat)
         unGen = 0
         for gen in individuo:
-            genMut = gen + (self.sigma * secuenciaM[unGen])
+            genMut = gen + (self.sigma * valAleat)#secuenciaM[unGen])
             nuevoIndividuo.append(genMut)
             unGen +=1
         return nuevoIndividuo
     
     def modificarSigma(self):
-        ps = self.exitos / (10*self.numVar)
+        ps = self.exitos / (10)#*self.numVar)
         if(ps > 0.2):
             self.sigma = self.sigma / self.CExplotar
             #print "[ps > 0.2]Sigma actualizada: ", self.sigma

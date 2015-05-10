@@ -9,9 +9,7 @@ from Evolutivo1P1 import Evolutivo1P1
 class Schaffer(Evolutivo1P1):
     
     def __init__(self):
-        print '*********************************'
-        print "|EJECUTANDO (3) SchafferFunction|"
-        print '********************************'
+        
         self.sigma = 0.2
         self.exitos = 0
         self.CExplotar = 0.817
@@ -28,6 +26,15 @@ class Schaffer(Evolutivo1P1):
         x2 = individuo[1]
         fx = 0.5  +  ((sin(x1**2 - x2**2))**2  -  0.5) / ( 1 + (0.001*(x1**2 + x2**2)) )**2 
         return fx
+    
+    def info(self,iter):
+        if(iter ==0):
+            print '*********************************'
+            print "|EJECUTANDO (3) SchafferFunction|"
+            print '********************************'
+        else:
+            print '========== Ejecucion',iter+1,'=========='
 
-funSchaffer = Schaffer()
-funSchaffer.RUN()
+    
+#funSchaffer = Schaffer()
+#funSchaffer.RUN()

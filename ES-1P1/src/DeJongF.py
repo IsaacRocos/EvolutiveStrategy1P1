@@ -11,9 +11,6 @@ class DeJong(Evolutivo1P1):
     '''
 
     def __init__(self):
-        print '**********************************'
-        print "EJECUTANDO (1) DeJoungFunction ..."
-        print '**********************************'
         self.sigma = 0.2
         self.exitos = 0
         self.CExplotar = 0.817
@@ -39,6 +36,14 @@ class DeJong(Evolutivo1P1):
         fx = 1 / ( 0.002 + fxsum )
         return fx
     
+    def info(self,iter):
+        if(iter ==0):
+            print '**********************************'
+            print "* EJECUTANDO (1) DeJoungFunction *"
+            print '**********************************'
+            print '|NUMERO DE VARIABLES(d):',self.numVar,'| SIGMA:',self.sigma,'| MAX_ITER:',self.MAX_ITER,'|'
+        else:
+            print '========== Ejecucion',iter+1,'=========='
 
-prueba = DeJong()
-prueba.RUN()
+#prueba = DeJong()
+#prueba.RUN()

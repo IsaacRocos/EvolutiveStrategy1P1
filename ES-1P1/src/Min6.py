@@ -12,9 +12,7 @@ class Minimizar6(Evolutivo1P1):
 
 
     def __init__(self):
-        print '**********************************'
-        print "EJECUTANDO (6) Function6 ..."
-        print '**********************************'
+        
         self.sigma = 0.1
         self.exitos = 0
         self.CExplotar = 0.817
@@ -50,6 +48,15 @@ class Minimizar6(Evolutivo1P1):
             fxsum +=  1/sxj
         fx = -1*fxsum
         return fx
+    
+    def info(self,iter):
+        if(iter ==0):
+            print '**********************************'
+            print "EJECUTANDO (6) Function6 ..."
+            print '**********************************'
+        else:
+            print '========== Ejecucion',iter+1,'=========='
 
-funMinimizar = Minimizar6()
-funMinimizar.RUN()   
+    
+#funMinimizar = Minimizar6()
+#funMinimizar.RUN()   
