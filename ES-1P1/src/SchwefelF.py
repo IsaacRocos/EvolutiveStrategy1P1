@@ -33,7 +33,7 @@ class Schwefel(Evolutivo1P1):
     def info(self,iter):
         if(iter ==0):
             print '***********************************'
-            print "|EJECUTANDO (5) SchafferFunctionN4|"
+            print "|EJECUTANDO (5) SchwefelFunction  |"
             print '***********************************'
         else:
             print '========== Ejecucion',iter+1,'=========='

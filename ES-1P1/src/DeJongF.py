@@ -14,14 +14,14 @@ class DeJong(Evolutivo1P1):
         self.sigma = 0.2
         self.exitos = 0
         self.CExplotar = 0.817
-        self.CExplorar = 1.01
+        self.CExplorar = 1.2
         self.numVar = 2
         self.mejorSolucion = []
         self.MAX_ITER = 10000
         self.interInf = -65.536
         self.interSup = 65.536
-        a1 = [-32,-16,0,16,32]*5
-        a2 = [-32]*5 + [-16]*5 + [0]*5 + [16]*5 + [32]*5
+        a1 = [-32.0,-16.0,0.0,16.0,32.0]*5
+        a2 = [-32.0]*5 + [-16.0]*5 + [0.0]*5 + [16.0]*5 + [32.0]*5
         self.a = []
         self.a.append(a1)
         self.a.append(a2)
@@ -30,10 +30,10 @@ class DeJong(Evolutivo1P1):
     #@Override
     def aptitud(self,individuo):
         fxsum = 0
-        for i in range(24):
-            sxi =  1 / ( (i+1) + (individuo[0] - self.a[0][i])**6 + (individuo[1] - self.a[1][i])**6)
+        for i in range(25):
+            sxi =  1.0 / ( (i+1) + (individuo[0] - self.a[0][i])**6 + (individuo[1] - self.a[1][i])**6 )
             fxsum = fxsum+sxi
-        fx = 1 / ( 0.002 + fxsum )
+        fx = 1.0 / ( 0.002 + fxsum )
         return fx
     
     def info(self,iter):
@@ -47,3 +47,4 @@ class DeJong(Evolutivo1P1):
 
 #prueba = DeJong()
 #prueba.RUN()
+

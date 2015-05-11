@@ -52,7 +52,7 @@ class Minimizar6(Evolutivo1P1):
     def info(self,iter):
         if(iter ==0):
             print '**********************************'
-            print "EJECUTANDO (6) Function6 ..."
+            print "*   EJECUTANDO (6) Function6     *"
             print '**********************************'
         else:
             print '========== Ejecucion',iter+1,'=========='

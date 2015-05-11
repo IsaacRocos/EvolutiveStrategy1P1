@@ -25,23 +25,31 @@ class Ejecutar(object):
         self.funShubert = Shubert()
         self.funDeVilliersGlasser = DeVilliersGlasser()
         
-        funciones = []
-        
-        funciones.append(self.funDeJoung)
-        funciones.append(self.funRastrigin)
-        funciones.append(self.funSchaffer)
-        funciones.append(self.funSchafferN4)
-        funciones.append(self.funSchwefel)
-        funciones.append(self.funMinimizar)
-        funciones.append(self.funShubert)
-        funciones.append(self.funDeVilliersGlasser)
-    
-    def runFunc(self):
-        print "Ejecutando funciones..."
+    def runFunc(self, funcion):
+        #print "Ejecutando funciones..."
         for i in range(self.nExec):
-            self.funDeJoung.info(i)
-            self.funDeJoung.RUN()
-        
-ejecutar = Ejecutar()
-ejecutar.runFunc()
+            print("")
+            print '--------------------------------------------------------------------------------------------------------'
+            try:
+                funcion.info(i)
+                funcion.RUN()
+            except Exception as ex:
+                print "<<ERROR en ejecucion",(i+1),'>>'
 
+
+ejecutar = Ejecutar()
+ejecutar.runFunc(ejecutar.funDeJoung)
+print('::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::')
+ejecutar.runFunc(ejecutar.funRastrigin)
+print('::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::')
+ejecutar.runFunc(ejecutar.funSchaffer)
+print('::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::')
+ejecutar.runFunc(ejecutar.funSchafferN4)
+print('::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::')
+ejecutar.runFunc(ejecutar.funSchwefel)
+print('::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::')
+ejecutar.runFunc(ejecutar.funMinimizar)
+print('::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::')
+ejecutar.runFunc(ejecutar.funShubert)
+print('::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::')
+ejecutar.runFunc(ejecutar.funDeVilliersGlasser)
